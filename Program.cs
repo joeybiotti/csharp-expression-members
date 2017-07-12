@@ -16,7 +16,7 @@ namespace expression_members
         public ICollection<string> Predators { get; } = new List<string>();
         public ICollection<string> Prey { get; } = new List<string>();
 
-        public string FormalName => $"{this.Name} the {this.Species}";
+        public string FormalName => $"A {this.Name} is an {this.Species}";
 
         // Class constructor
         public Bug(string name, string species, List<string> predators, List<string> prey)
@@ -29,13 +29,21 @@ namespace expression_members
 
         public string PreyList => string.Join(",", this.Prey);
         
-
         public string PredatorList => string.Join("," , this.Predators);
 
-        public string Eat(string food) => (this.Prey.Contains(food) ? $"{this.Name} ate the {food}" : $"{this.Name} is still hungry");
+        public string Eat(string food) => (this.Prey.Contains(food) ? $"The {this.Name} ate the {food}" : $"The {this.Name} is still hungry");
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            List<string> Predators = new List <string>{"lions", "tigers", "bears"};
+            List<string> Prey = new List <string>{"rabbit", "grasshopper", "human", "trash"};
+            Bug spider = new Bug(name:"spider", species:"arachnid", predators: Predators, prey: Prey);
+            Bug fly = new Bug(name: "fly", species:"insect", predators: Predators, prey: Prey);
+            Console.WriteLine(spider.Eat("human"));
+            Console.WriteLine(spider.Eat("fly"));
+            Console.WriteLine(spider.FormalName);
+            Console.WriteLine(fly.Eat("lions"));
+            Console.WriteLine(fly.Eat("trash"));
+            Console.WriteLine(fly.FormalName);
         }
     }
 }
